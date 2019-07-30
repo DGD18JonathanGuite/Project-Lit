@@ -15,7 +15,9 @@ public class ChargeMovement : MonoBehaviour
     {
         WayPointSet = GameObject.Find("WayPointsSetOne");
         ChargecanMove = true;
+        Debug.Log("Target Position is " + WayPointSet.GetComponent<WaypointSystem>().WayPoints[0].position);
         target = WayPointSet.GetComponent<WaypointSystem>().WayPoints[WayPointID];
+        
         direction = (target.position - gameObject.transform.position);
     }
 
