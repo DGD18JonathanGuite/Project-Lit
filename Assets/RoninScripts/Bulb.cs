@@ -7,6 +7,8 @@ public class Bulb : MonoBehaviour
 {
     public Power bulbScript;
     public float BulbPower;
+    public float OverCharged=6;
+    public float BulbCharged=3;
     public float newBulbPower;
     public bool CollisionOn;
     public Material BulbOff, BulbOn;
@@ -44,7 +46,7 @@ public class Bulb : MonoBehaviour
             
         }
 
-        if(BulbPower > 3)
+        if(BulbPower > BulbCharged)
             gameObject.GetComponent<MeshRenderer>().material = BulbOn;
 
         if(BulbPower<3 && CollisionOn == true && bulbScript.ButtonHeldDown == true)
@@ -54,7 +56,7 @@ public class Bulb : MonoBehaviour
             StartCoroutine(Blink());
         }
 
-        if(BulbPower > 6)
+        if(BulbPower > OverCharged)
         {
             FindObjectOfType<GameManager>().EndGame();
         }
