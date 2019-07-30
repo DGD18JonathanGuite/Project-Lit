@@ -4,25 +4,29 @@ using UnityEngine;
 
 public class Power : MonoBehaviour
 {
-    public float power;
-    float maxPower = 10;
-    float ChargeSpeed=3;
-    public bool ButtonHeldDown;
    
-    
+    public bool ButtonHeldDown;
+    public Material SparksOff, SparksOn;
+
+    private void Start()
+    {
+        gameObject.GetComponent<MeshRenderer>().material = SparksOff;
+    }
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKey("space"))
         {
-            power += Time.deltaTime * ChargeSpeed;
-            ButtonHeldDown = true;
             
+            ButtonHeldDown = true;
+            gameObject.GetComponent<MeshRenderer>().material = SparksOn;
+
         }
         else
         {
             ButtonHeldDown = false;
-            power = 0;  
+            gameObject.GetComponent<MeshRenderer>().material = SparksOff;
+
         }
     }
 
