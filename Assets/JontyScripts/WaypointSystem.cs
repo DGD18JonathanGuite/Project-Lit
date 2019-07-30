@@ -6,7 +6,7 @@ public class WaypointSystem : MonoBehaviour
 {
     public Transform[] WayPoints;
 
-    public void Start()
+    public void Awake()
     {
         WayPoints = new Transform[transform.childCount];
         for (int i = 0; i < transform.childCount; i++)
