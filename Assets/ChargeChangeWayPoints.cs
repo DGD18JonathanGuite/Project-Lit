@@ -2,28 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChargeChangeWayPoints : ResetChargeMovement
+public class ChargeChangeWayPoints : MonoBehaviour
 {
-    public GameObject WayPointSet1, WayPointSet2;
+    public GameObject Charge, WayPointSet1, WayPointSet2;
 
-    private void FixedUpdate()
+    public void PickWayPointSet()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && Charge.GetComponent<ChargeMovement>().WayPointID == 1)
-            PickWayPointSet();
-    }
-
-    void PickWayPointSet()
-    {
-        if(Charge.GetComponent<ChargeMovement>().WayPointSet == WayPointSet1)
+        Debug.Log("PickingWayPoint");
+        if(gameObject.GetComponent<ChargeMovement>().WayPointSet == WayPointSet1)
         {
-            Charge.GetComponent<ChargeMovement>().WayPointSet = WayPointSet2;
-            Charge.GetComponent<Transform>().Translate(new Vector3(0, (Charge.GetComponent<ChargeMovement>().WayPointSet.transform.position.y + Charge.GetComponent<Transform>().position.y)/2, 0));
+            Debug.Log("Waypoint set is WaypointSet1 and changing to WaypointSet2");
+            gameObject.GetComponent<ChargeMovement>().WayPointSet = WayPointSet2;
+            gameObject.GetComponent<Transform>().Translate(new Vector3(0, (gameObject.GetComponent<ChargeMovement>().WayPointSet.transform.position.y + gameObject.GetComponent<Transform>().position.y)/2, 0));
         }
         else
         {
-            Charge.GetComponent<ChargeMovement>().WayPointSet = WayPointSet1;
-            Charge.GetComponent<Transform>().Translate(new Vector3(0, (Charge.GetComponent<ChargeMovement>().WayPointSet.transform.position.y - Charge.GetComponent<Transform>().position.y)/2, 0));
+            Debug.Log("Waypoint set is WaypointSet2 and changing to WaypointSet1");
+            gameObject.GetComponent<ChargeMovement>().WayPointSet = WayPointSet1;
+            gameObject.GetComponent<Transform>().Translate(new Vector3(0, (gameObject.GetComponent<ChargeMovement>().WayPointSet.transform.position.y - gameObject.GetComponent<Transform>().position.y)/2, 0));
         }
         ChargeReset();
+    }
+
+    public void ChargeReset()
+    {
+        gameObject.GetComponent<ChargeMovement>().WayPointID--;
+        gameObject.GetComponent<ChargeMovement>().ChangeDirection();
     }
 }
