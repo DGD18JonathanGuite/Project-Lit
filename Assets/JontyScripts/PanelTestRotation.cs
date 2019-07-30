@@ -17,15 +17,15 @@ public class PanelTestRotation : MonoBehaviour
     {
         Charge.GetComponent<ChargeRotationbyPanel>().RotateChargewithPanel(gameObject.transform);
         Rotating = true;
-        for (int i = 0; i < 90; i++)
+        for (int i = 0; i < 36; i++)
         {
-            transform.Rotate(new Vector3(0, 0, 2));
+            transform.Rotate(new Vector3(0, 0, 5));
             yield return new WaitForSeconds(0.01f);
         }
 
-        transform.Rotate(new Vector3(0, 0, 3));
-        yield return new WaitForSeconds(0.1f);
-        transform.Rotate(new Vector3(0, 0, -3));
+        transform.Rotate(new Vector3(0, 0, 5));
+        yield return new WaitForSeconds(0.05f);
+        transform.Rotate(new Vector3(0, 0, -5));
         Rotating = false;
         yield return new WaitForSeconds(0.2f);
 
