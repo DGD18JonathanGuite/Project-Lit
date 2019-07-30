@@ -64,19 +64,31 @@ public class Bulb : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        CollisionOn = true;
+        if(other.gameObject.tag == "spark")
+        {
+            CollisionOn = true;
+        }
+        
     }
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("ON");
-        CollisionOn = true;
+        if (other.gameObject.tag == "spark")
+        {
+            Debug.Log("ON");
+            CollisionOn = true;
+        }
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("OFF");
-        CollisionOn = false;
+        if (other.gameObject.tag == "spark")
+        {
+            Debug.Log("OFF");
+            CollisionOn = false;
+        }
+        
     }
 
     IEnumerator Blink()
