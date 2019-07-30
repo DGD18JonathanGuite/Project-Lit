@@ -11,7 +11,7 @@ public class Bulb : MonoBehaviour
     public float BulbCharged=3;
     public float newBulbPower;
     public bool CollisionOn;
-    public Material BulbOff, BulbOn;
+    public Material BulbOff, BulbOn, BulbBlow;
     public float ChargeSpeed=3;
     public bool Coroutineisrunning;
     
@@ -63,6 +63,7 @@ public class Bulb : MonoBehaviour
 
         if(BulbPower > OverCharged)
         {
+            gameObject.GetComponent<MeshRenderer>().material = BulbBlow;
             FindObjectOfType<GameManager>().EndGame();
         }
        

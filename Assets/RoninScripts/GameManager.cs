@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject Over;
+    public GameObject Win;
     bool GameHasEnded = false;
 
     public void WinGame()
@@ -13,7 +14,8 @@ public class GameManager : MonoBehaviour
         if (GameObject.FindGameObjectsWithTag("Unlit").Length == 0)
         {
             Debug.Log("WINNER WINNER");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            Win.gameObject.SetActive(true);
+            Invoke("NextLevel", 2f);
         }
     }
     public void EndGame()
@@ -32,5 +34,10 @@ public class GameManager : MonoBehaviour
     void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void NextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
