@@ -9,29 +9,45 @@ public class ChargeMovement : MonoBehaviour
     public Transform target;
     Vector3 direction;
     public GameObject WayPointSet;
+    public bool ChargecanMove = true, DirectionisChanging = false;
 
     public void Start()
     {
-        //WayPointID = 0;
+        WayPointSet = GameObject.Find("WayPointsSetOne");
+        ChargecanMove = true;
         target = WayPointSet.GetComponent<WaypointSystem>().WayPoints[WayPointID];
         direction = (target.position - gameObject.transform.position);
     }
 
     private void FixedUpdate()
     {        
+        if(ChargecanMove == true)
         transform.Translate(direction.normalized * speed);
-        if (Vector3.Distance(target.position, gameObject.transform.position) <= 0.1f)
+        if (Vector3.Distance(target.position, gameObject.transform.position) <= 0.1f && DirectionisChanging == false)
             ChangeDirection();
     }
 
     public void ChangeDirection()
-    {        
-        if ((WayPointSet.GetComponent<WaypointSystem>().WayPoints.Length) == WayPointID)
+    {
+        DirectionisChanging = true;
+        WayPointID += 1;
+        if ((WayPointSet.GetComponent<WaypointSystem>().WayPoints.Length) == (WayPointID))
             WayPointID = 0;
-        else
-        {
-            target = WayPointSet.GetComponent<WaypointSystem>().WayPoints[WayPointID++];
+        
+            
+            target = WayPointSet.GetComponent<WaypointSystem>().WayPoints[WayPointID];
             direction = (target.position - gameObject.transform.position);
-        }            
+        
+        DirectionisChanging = false;
+    }
+
+    public void ReestablishCurrentCourse()
+    {
+        transform.rotation = Quaternion.identity; // This is necessary to have the Charge shot where it's supposed to be.
+        target = WayPointSet.GetComponent<WaypointSystem>().WayPoints[WayPointID];
+        
+        Debug.Log("Target Position is " + target.position + " and GameObject position is " + gameObject.transform.position);
+        direction = (target.position - gameObject.transform.position);
+        
     }
 }
