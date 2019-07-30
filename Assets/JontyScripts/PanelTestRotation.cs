@@ -24,10 +24,10 @@ public class PanelTestRotation : MonoBehaviour
         }
 
         transform.Rotate(new Vector3(0, 0, 3));
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         transform.Rotate(new Vector3(0, 0, -3));
         Rotating = false;
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
 
         Charge.GetComponent<ChargeRotationbyPanel>().FreeChargefromPanel();        
     }
