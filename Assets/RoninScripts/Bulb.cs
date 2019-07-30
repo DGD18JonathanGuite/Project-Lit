@@ -47,7 +47,12 @@ public class Bulb : MonoBehaviour
         }
 
         if(BulbPower > BulbCharged)
+        {
             gameObject.GetComponent<MeshRenderer>().material = BulbOn;
+            gameObject.tag = "Untagged";
+            FindObjectOfType<GameManager>().WinGame();
+        }
+            
 
         if(BulbPower<3 && CollisionOn == true && bulbScript.ButtonHeldDown == true)
         {
