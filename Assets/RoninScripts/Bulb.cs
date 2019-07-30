@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,12 +12,17 @@ public class Bulb : MonoBehaviour
     public Material BulbOff, BulbOn;
     public float ChargeSpeed=3;
     public bool Coroutineisrunning;
+    
+
+   
+    
 
     // Start is called before the first frame update
     void Start()
     {
         newBulbPower = 0;
         gameObject.GetComponent<MeshRenderer>().material = BulbOff;
+        
     }
 
     // Update is called once per frame
@@ -48,6 +54,11 @@ public class Bulb : MonoBehaviour
             StartCoroutine(Blink());
         }
 
+        if(BulbPower > 6)
+        {
+            FindObjectOfType<GameManager>().EndGame();
+        }
+       
 
     }
 
