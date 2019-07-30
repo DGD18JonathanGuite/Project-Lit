@@ -8,10 +8,13 @@ public class Bulb : MonoBehaviour
     public float BulbPower;
     public float newBulbPower;
     public bool CollisionOn;
+    public Material BulbOff, BulbOn;
+    
     // Start is called before the first frame update
     void Start()
     {
         newBulbPower = 0;
+        gameObject.GetComponent<MeshRenderer>().material = BulbOff;
     }
 
     // Update is called once per frame
@@ -32,7 +35,11 @@ public class Bulb : MonoBehaviour
             newBulbPower = BulbPower;
             
         }
-        
+
+        if(BulbPower > 3000)
+            gameObject.GetComponent<MeshRenderer>().material = BulbOn;
+
+
     }
 
     private void OnTriggerEnter(Collider other)

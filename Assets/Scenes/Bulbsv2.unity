@@ -525,6 +525,8 @@ MonoBehaviour:
   BulbPower: 0
   newBulbPower: 0
   CollisionOn: 0
+  BulbOff: {fileID: 2100000, guid: 6c454cf2dd5f18143813885b812b95f2, type: 2}
+  BulbOn: {fileID: 2100000, guid: c4b59d43f01f07a42a84c949e06eba0a, type: 2}
 --- !u!54 &783422199
 Rigidbody:
   m_ObjectHideFlags: 0
