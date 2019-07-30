@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Waypoint
   - spark
+  - Unlit
   layers:
   - Default
   - TransparentFX
