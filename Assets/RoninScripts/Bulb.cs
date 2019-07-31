@@ -14,8 +14,10 @@ public class Bulb : MonoBehaviour
     public Material BulbOff, BulbOn, BulbBlow;
     public float ChargeSpeed=3;
     public bool Coroutineisrunning;
-    
 
+    //STUFF JONTY ADDED
+    public ParticleSystem Explosion;
+    public bool Gameover = false;
    
     
 
@@ -54,20 +56,40 @@ public class Bulb : MonoBehaviour
         }
             
 
-        if(BulbPower<3 && CollisionOn == true && bulbScript.ButtonHeldDown == true)
+        if(BulbPower<2 && CollisionOn == true && bulbScript.ButtonHeldDown == true)
         {
 
             if (Coroutineisrunning == false)
             StartCoroutine(Blink());
         }
 
-        if(BulbPower > OverCharged)
+        //JONTY ADDED THIS FOR THE WARNING BLINK
+        if (BulbPower > 2 && CollisionOn == true && bulbScript.ButtonHeldDown == true)
+        {
+
+            if (Coroutineisrunning == false)
+                StartCoroutine(OverBlink());
+        }
+
+
+        if (BulbPower > OverCharged)
         {
             gameObject.GetComponent<MeshRenderer>().material = BulbBlow;
+
+            if (Gameover == false)
+                BlowUpBulb();      
+            
             FindObjectOfType<GameManager>().EndGame();
         }
        
 
+    }
+
+    public void BlowUpBulb()
+    {
+            Gameover = true;
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+            Instantiate(Explosion, transform.position, Quaternion.identity);        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -127,5 +149,35 @@ public class Bulb : MonoBehaviour
         }
         Coroutineisrunning = false;
     }
-    
+
+
+    IEnumerator OverBlink()
+    {
+        //for (int n = 0; n < 10; n++)
+        //{
+        //    gameObject.GetComponent<MeshRenderer>().material = BulbOn;
+        //    yield return new WaitForSeconds(0.1f);
+        //    gameObject.GetComponent<MeshRenderer>().material = BulbOff;
+        //    yield return new WaitForSeconds(0.1f);
+
+        //}
+        Coroutineisrunning = true;
+        while (bulbScript.ButtonHeldDown == true && CollisionOn == true)
+        {
+            gameObject.GetComponent<MeshRenderer>().material = BulbBlow;
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+            gameObject.GetComponent<MeshRenderer>().material = BulbOn;
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+        }
+        Coroutineisrunning = false;
+    }
+
 }
