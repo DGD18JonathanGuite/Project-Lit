@@ -8,8 +8,11 @@ public class RedTapeGlow : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        Debug.Log("On Trigger with "+ other.name);
+
         if (other.gameObject.tag == "spark" && other.gameObject.GetComponent<Power>().ButtonHeldDown == true)
         {
+
             gameObject.GetComponent<MeshRenderer>().material = RedGlow;
         }
 
