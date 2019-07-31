@@ -13,6 +13,8 @@ public class RotatingPower : MonoBehaviour
 
     public GameObject Charge;
 
+    public GameObject Indicator_1, Indicator_2, Indicator_3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,7 @@ public class RotatingPower : MonoBehaviour
             if (RotatorScript.ButtonHeldDown == true)
             {
                 RotatorPower1 += Time.deltaTime * ChargeSpeed;
+                CheckforIndicators();
             }
         }
 
@@ -63,7 +66,26 @@ public class RotatingPower : MonoBehaviour
         {
             //Debug.Log("OFF");
             CollisionOn = false;
+            RotatorPower1 = 0;
+            StartCoroutine(TurnOffallIndicators());
         }
 
+    }
+
+    void CheckforIndicators()
+    {
+        if (RotatorPower1 >= RotatorCharged / 3)
+            Indicator_1.GetComponent<MeshRenderer>().material = RotatorOn;
+        if (RotatorPower1 >= 2*RotatorCharged / 3)
+            Indicator_2.GetComponent<MeshRenderer>().material = RotatorOn;
+        if (RotatorPower1 >= RotatorCharged)
+            Indicator_3.GetComponent<MeshRenderer>().material = RotatorOn;
+    }
+
+    
+    IEnumerator TurnOffallIndicators()
+    {
+        yield return new WaitForSeconds(1f); 
+        Indicator_1.GetComponent<MeshRenderer>().material = Indicator_2.GetComponent<MeshRenderer>().material = Indicator_3.GetComponent<MeshRenderer>().material = RotatorOff;
     }
 }

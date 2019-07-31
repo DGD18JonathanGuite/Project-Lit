@@ -2831,3 +2831,6 @@ MonoBehaviour:
   BulbBlow: {fileID: 2100000, guid: de7bf2d97560e3f4089f95438dd6f4dc, type: 2}
   ChargeSpeed: 3
   Coroutineisrunning: 0
+  Explosion: {fileID: 2854758259527567844, guid: 60dac492b24fac94f8cda1ffd385e370,
+    type: 3}
+  Gameover: 0

@@ -596,6 +596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Over: {fileID: 891622587}
   Win: {fileID: 592489138}
+  y: 0
 --- !u!4 &783490308
 Transform:
   m_ObjectHideFlags: 0
@@ -705,6 +706,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6901870751289456576, guid: db300f9a255db9447961ea5e0f1f7b7a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6901870750638347734, guid: db300f9a255db9447961ea5e0f1f7b7a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -810,11 +816,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6901870751289456576, guid: db300f9a255db9447961ea5e0f1f7b7a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db300f9a255db9447961ea5e0f1f7b7a, type: 3}
 --- !u!114 &2529791878897639464
@@ -837,8 +838,12 @@ MonoBehaviour:
   CollisionOn: 0
   BulbOff: {fileID: 2100000, guid: 6c454cf2dd5f18143813885b812b95f2, type: 2}
   BulbOn: {fileID: 2100000, guid: c4b59d43f01f07a42a84c949e06eba0a, type: 2}
+  BulbBlow: {fileID: 0}
   ChargeSpeed: 3
   Coroutineisrunning: 0
+  Explosion: {fileID: 2854758259527567844, guid: 60dac492b24fac94f8cda1ffd385e370,
+    type: 3}
+  Gameover: 0
 --- !u!1 &2529791878897639465
 GameObject:
   m_ObjectHideFlags: 0
