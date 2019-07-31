@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject Over;
     public GameObject Win;
     bool GameHasEnded = false;
+    public int y;
 
     public void WinGame()
     {
@@ -38,6 +39,20 @@ public class GameManager : MonoBehaviour
 
     void NextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (y < 4)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+
+       if (y > 4)
+        {
+            SceneManager.LoadScene(0);
+        }
+        
+    }
+
+    private void Update()
+    {
+        y = SceneManager.GetActiveScene().buildIndex;
     }
 }

@@ -110,7 +110,7 @@ public class Bulb : MonoBehaviour
 
         //}
         Coroutineisrunning = true;
-        while (bulbScript.ButtonHeldDown == true)
+        while (bulbScript.ButtonHeldDown == true && CollisionOn==true)
         {
             gameObject.GetComponent<MeshRenderer>().material = BulbOn;
             yield return new WaitForEndOfFrame();

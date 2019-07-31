@@ -16,4 +16,12 @@ public class MainMenu : MonoBehaviour
         Debug.Log("END THIS NIGHTMARE");
         Application.Quit();
     }
+
+    private void Update()
+    {
+       if(Input.GetKeyDown(KeyCode.Space))
+        {
+            PlayGame();
+        }
+    }
 }
