@@ -56,7 +56,7 @@ public class Bulb : MonoBehaviour
         }
             
 
-        if(BulbPower<2 && CollisionOn == true && bulbScript.ButtonHeldDown == true)
+        if(BulbPower < 3 && CollisionOn == true && bulbScript.ButtonHeldDown == true)
         {
 
             if (Coroutineisrunning == false)
@@ -64,7 +64,7 @@ public class Bulb : MonoBehaviour
         }
 
         //JONTY ADDED THIS FOR THE WARNING BLINK
-        if (BulbPower > 2 && CollisionOn == true && bulbScript.ButtonHeldDown == true)
+        if (BulbPower >= 3 && CollisionOn == true && bulbScript.ButtonHeldDown == true)
         {
 
             if (Coroutineisrunning == false)
@@ -131,6 +131,7 @@ public class Bulb : MonoBehaviour
         //    yield return new WaitForSeconds(0.1f);
 
         //}
+        Debug.Log("Blinking");
         Coroutineisrunning = true;
         while (bulbScript.ButtonHeldDown == true && CollisionOn==true)
         {
@@ -153,31 +154,29 @@ public class Bulb : MonoBehaviour
 
     IEnumerator OverBlink()
     {
-        //for (int n = 0; n < 10; n++)
-        //{
-        //    gameObject.GetComponent<MeshRenderer>().material = BulbOn;
-        //    yield return new WaitForSeconds(0.1f);
-        //    gameObject.GetComponent<MeshRenderer>().material = BulbOff;
-        //    yield return new WaitForSeconds(0.1f);
+        Debug.Log("OverBlinking");
 
-        //}
         Coroutineisrunning = true;
         while (bulbScript.ButtonHeldDown == true && CollisionOn == true)
         {
             gameObject.GetComponent<MeshRenderer>().material = BulbBlow;
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
-            gameObject.GetComponent<MeshRenderer>().material = BulbOn;
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(.1f);
+            //yield return new WaitForEndOfFrame();
+            //yield return new WaitForEndOfFrame();
+            //yield return new WaitForEndOfFrame();
+            
+            gameObject.GetComponent<MeshRenderer>().material = BulbOff;
+            yield return new WaitForSeconds(.06f);
+
+            //yield return new WaitForEndOfFrame();
+            //yield return new WaitForEndOfFrame();
+            //yield return new WaitForEndOfFrame();
+            //yield return new WaitForEndOfFrame();
+
         }
         Coroutineisrunning = false;
+        gameObject.GetComponent<MeshRenderer>().material = BulbOn;
+
     }
 
 }
